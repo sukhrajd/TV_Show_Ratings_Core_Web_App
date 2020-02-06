@@ -1,0 +1,42 @@
+﻿@page
+@model TV_Show_Ratings_Core_Web_App.Pages.TVChannels.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>TV Channels</h1>
+
+<p>
+    <a class="btn btn-info"  asp-page="Create">+Add TV Channel</a>
+</p>
+<table class="table table-striped table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TVChannel[0].ChannelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TVChannel[0].Established)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TVChannel) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Established)
+            </td>
+            <td>
+                <a class="btn btn-info"  asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-info" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

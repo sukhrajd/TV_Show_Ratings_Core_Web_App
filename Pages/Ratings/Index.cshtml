@@ -1,0 +1,48 @@
+﻿@page
+@model TV_Show_Ratings_Core_Web_App.Pages.Ratings.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Show Ratings</h1>
+
+<p>
+    <a class="btn btn-info" asp-page="Create">+Add Rating</a>
+</p>
+<table class="table table-striped table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating[0].Subscriber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating[0].TVShow)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating[0].RatingValue)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Rating) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subscriber.SubscriberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TVShow.ShowName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingValue)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-info" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
